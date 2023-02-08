@@ -11,12 +11,6 @@ const app = express();
 app.use(morgan('dev'));
 app.use(express.json());
 
-//Just testing middleware
-app.use((req, res, next) => {
-    console.log('Middleware is here');
-    next();
-});
-
 //Middleware that shows ISO 8601 UTC (Coordinated Universal Time).
 app.use((req, res, next) => {
     req.requestTime = new Date().toISOString();
@@ -45,12 +39,42 @@ const getAllEvents = (req, res) => {
     });
 };
 
+
+//GET EVENT BY ID
+const getEventById = (req, res) => {
+    console.log('Event:', req.params);
+    const id = req.params.id * 1;
+    const event = events.find(el => el._id === id)
+
+    //Case Invalid ID
+    if(!event){
+        return res.status(404).json({
+            status: 'fail',
+            message: 'Invalid ID'
+        })
+    }
+
+    //Case Valid ID
+    res.status(200).json({
+        status:'sucess',
+        data: {
+            event
+        }
+    });
+}
+
 //---------- ROUTES ----------
+
+//GET ALL EVENTS
 app
 .route('/api/v1/events')
 .get(getAllEvents);
 
+//GET EVENT BY ID
 
+app
+.route('/api/v1/events/:id')
+.get(getEventById);
 //---------- SERVER ----------
 
 //127.0.0.1:3000

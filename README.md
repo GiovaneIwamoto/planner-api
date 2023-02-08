@@ -1,1 +1,1 @@
-# planner-api
+Description: Thinking about a new client that appearred in the market, Compass UOL had the idea of creating a planner. This planner will help the client to organize his week and his tasks anda at what times they happen.

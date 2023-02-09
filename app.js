@@ -11,6 +11,7 @@ const app = express();
 app.use(morgan('dev'));
 app.use(express.json());
 
+
 //Middleware that shows ISO 8601 UTC (Coordinated Universal Time).
 app.use((req, res, next) => {
     req.requestTime = new Date().toISOString();
@@ -23,8 +24,14 @@ const events = JSON.parse(
     fs.readFileSync(`${__dirname}/data/events.json`)
 );
 
+const usersSignUp = JSON.parse(
+    fs.readFileSync(`${__dirname}/data/users-sign-up.json`)
+);
+
 
 //---------- ROUTE HANDLERS ----------
+
+//---------- EVENTS ----------
 
 //GET ALL EVENTS
 const getAllEvents = (req, res) => {
@@ -61,7 +68,41 @@ const getEventById = (req, res) => {
             event
         }
     });
+};
+
+//---------- USERS ----------
+
+//FOR JSON FILE shift + alt + f
+const createUserSignUp = (req, res) => {
+const newUserSignUp = Object.assign(req.body);
+    
+    if( !newUserSignUp.firstName  ||
+        !newUserSignUp.lastName   ||
+        !newUserSignUp.birthDate  ||
+        !newUserSignUp.city       ||
+        !newUserSignUp.country    ||
+        !newUserSignUp.email      ||
+        !newUserSignUp.password   ||
+        !newUserSignUp.confirmPassword){
+             res.status(400).json({
+                status: 'fail',
+                message: 'Invalid'
+            });
+        }
+    
+    else{
+        usersSignUp.push(newUserSignUp);
+        fs.writeFile(`${__dirname}/data/users-sign-up.json`, JSON.stringify(usersSignUp), err => {
+            res.status(201).json({
+                status: 'sucess',
+                data: {
+                    user: newUserSignUp
+                }
+            })
+        })
+    }
 }
+
 
 //---------- ROUTES ----------
 
@@ -71,10 +112,16 @@ app
 .get(getAllEvents);
 
 //GET EVENT BY ID
-
 app
 .route('/api/v1/events/:id')
 .get(getEventById);
+
+//POST USER SIGN UP
+app
+.route('/api/v1/users/signUp')
+.post(createUserSignUp);
+
+
 //---------- SERVER ----------
 
 //127.0.0.1:3000

@@ -1,4 +1,5 @@
 //---------- PLANNER API ----------
+//FOR JSON FILE shift + alt + f
 
 //---------- GLOBAL CONST ----------
 const fs = require('fs');
@@ -77,8 +78,38 @@ const getEventById = (req, res) => {
     });
 };
 
+//CREATE EVENT
+const createEvent = (req, res) => {
+    //BUG: You cannot create a new event if yours events list are empty
+
+    //Creating new ID for the new event
+    const newId = events[events.length - 1]._id + 1;
+    const newEvent = Object.assign({_id : newId}, req.body);
+
+    if( !newEvent.description   ||
+        !newEvent.dateTime      ||
+        !newEvent.createdAt){
+            res.status(400).json({
+                status: 'fail',
+                message: 'Invalid'
+            });
+        }
+    
+    else{
+        events.push(newEvent);
+        fs.writeFile(`${__dirname}/data/events.json`,
+        JSON.stringify(events), err => {
+            res.status(201).json({
+                status: 'sucess',
+                data: {
+                    event: newEvent
+                }
+            });
+        });
+    }
+}
+
 //---------- USERS ----------
-//FOR JSON FILE shift + alt + f
 
 //CREATE USER SIGN UP  
 const createUserSignUp = (req, res) => {
@@ -146,7 +177,8 @@ const createUserSignIn = (req, res) => {
 //GET ALL EVENTS
 app
 .route('/api/v1/events')
-.get(getAllEvents);
+.get(getAllEvents)
+.post(createEvent);
 
 //GET EVENT BY ID
 app

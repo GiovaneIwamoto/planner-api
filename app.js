@@ -50,27 +50,47 @@ const getAllEvents = (req, res) => {
     });
 };
 
-//GET EVENT BY ID
-const getEventById = (req, res) => {
-        
-    const id = req.params.id * 1;
+
+//GET EVENT BY ID AND WEEKDAY
+const getEvent = (req, res) => {
+    
+    //Return the respective event by id
+    const id = req.params.idOrWeekDay * 1;
     const event = events.find(el => el._id === id)
 
-    if(!event){
+    if(event){
+        return res.status(200).json({
+            status: 'sucess',
+            data: {
+                event
+            }
+        });
+    }
+
+    //Return the respective event by week day
+    const daysOfWeek = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+    const filteredEvents = events.filter(event => {
+        const date = new Date(event.dateTime);
+        const eventDayOfTheWeek = daysOfWeek[date.getUTCDay()];
+        return eventDayOfTheWeek === req.params.idOrWeekDay;
+    });
+
+    if(!filteredEvents.length){
         return res.status(404).json({
             status: 'fail',
-            message: 'Invalid ID'
-        })
+            message: 'WRONG ID OR NO EVENTS FOR THIS WEEK DAY'
+        });
     }
 
     res.status(200).json({
-        status:'sucess',
+        status: 'sucess',
         data: {
-            event
+            filteredEvents
         }
     });
-};
-
+} 
+    
+ 
 //CREATE EVENT
 const createEvent = (req, res) => {
     //BUG: You cannot create a new event if yours events list are empty
@@ -87,7 +107,7 @@ const createEvent = (req, res) => {
         !newEvent.dateTime){
             res.status(400).json({
                 status: 'fail',
-                message: 'Invalid'
+                message: 'INVALID BODY'
             });
         }
     
@@ -107,13 +127,13 @@ const createEvent = (req, res) => {
 
 //DELETE EVENT BY ID
 const deleteEventById = (req, res) => {
-    const id = req.params.id * 1;
+    const id = req.params.idOrWeekDay * 1;
     const eventIndex = events.findIndex(el => el._id === id);
   
     if (eventIndex === -1) {
         return res.status(404).json({
             status: 'fail',
-            message: 'Invalid ID'
+            message: 'INVALID ID'
         });
     } 
     
@@ -124,7 +144,7 @@ const deleteEventById = (req, res) => {
             
             return res.status(204).json({
             status : 'no content',
-            message : 'Successfully deleted'
+            message : 'SUCCESSFULLY DELETED'
             });
         });
     }
@@ -146,7 +166,7 @@ const createUserSignUp = (req, res) => {
         !newUserSignUp.confirmPassword){
              res.status(400).json({
                 status: 'fail',
-                message: 'Invalid'
+                message: 'INVALID BODY'
             });
         }
     
@@ -172,7 +192,7 @@ const createUserSignIn = (req, res) => {
         !newUserSignIn.password){
             res.status(404).json({
                 status: 'fail',
-                message: 'Invalid'
+                message: 'INVALID BODY'
             }); 
         }
     
@@ -198,10 +218,10 @@ app
 .get(getAllEvents)
 .post(createEvent);
 
-//EVENT BY ID
+//EVENT ID AND WEEKDAY
 app
-.route('/api/v1/events/:id')
-.get(getEventById)
+.route('/api/v1/events/:idOrWeekDay')
+.get(getEvent)
 .delete(deleteEventById);
 
 //USER SIGN UP

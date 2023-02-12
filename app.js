@@ -67,7 +67,7 @@ const getEvent = (req, res) => {
         });
     }
 
-    //Return the respective event by week day
+    //Return the respective event by weekday
     const daysOfWeek = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
     const filteredEvents = events.filter(event => {
         const date = new Date(event.dateTime);
@@ -93,7 +93,6 @@ const getEvent = (req, res) => {
  
 //CREATE EVENT
 const createEvent = (req, res) => {
-    //BUG: You cannot create a new event if yours events list are empty
 
     //Creating new ID for the new event
     const newId = events[events.length - 1]._id + 1;
@@ -115,7 +114,7 @@ const createEvent = (req, res) => {
         events.push(newEvent);
         fs.writeFile(`${__dirname}/data/events.json`,
         JSON.stringify(events), err => {
-            res.status(201).json({
+            res.status(200).json({
                 status: 'sucess',
                 data: {
                     event: newEvent
@@ -125,27 +124,47 @@ const createEvent = (req, res) => {
     }
 }
 
-//DELETE EVENT BY ID
-const deleteEventById = (req, res) => {
+//DELETE EVENT BY ID AND WEEKDAY
+const deleteEvent = (req, res) => {
+    //Delete by id const
     const id = req.params.idOrWeekDay * 1;
     const eventIndex = events.findIndex(el => el._id === id);
   
-    if (eventIndex === -1) {
-        return res.status(404).json({
-            status: 'fail',
-            message: 'INVALID ID'
-        });
-    } 
-    
-    else {
+    //Delete by weekday const
+    const daysOfWeek = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+    const filteredEvents = events.filter(event => {
+        const date = new Date(event.dateTime);
+        const eventDayOfTheWeek = daysOfWeek[date.getUTCDay()];
+        return eventDayOfTheWeek === req.params.idOrWeekDay;
+    });
+  
+    if (eventIndex !== -1) { //Check id existence and delete
         events.splice(eventIndex, 1);
-        fs.writeFile(`${__dirname}/data/events.json`,
-        JSON.stringify(events), err => {
-            
+        fs.writeFile(`${__dirname}/data/events.json`, JSON.stringify(events), err => {
+
+        return res.status(204).json({
+            status: 'no content',
+            message: 'SUCCESSFULLY DELETED'
+        });
+    });
+    
+} else if (filteredEvents.length) { //Check filteredEvents and delete
+        filteredEvents.forEach(filteredEvent => {
+            const filteredEventIndex = events.findIndex(event => event._id === filteredEvent._id);
+            events.splice(filteredEventIndex, 1);
+        });
+      
+        fs.writeFile(`${__dirname}/data/events.json`, JSON.stringify(events), err =>{
             return res.status(204).json({
-            status : 'no content',
-            message : 'SUCCESSFULLY DELETED'
-            });
+            status: 'no content',
+            message: 'SUCCESSFULLY DELETED'
+        });
+    });
+
+} else {
+    return res.status(400).json({
+        status: 'fail',
+        message: 'INVALID ID OR NO EVENTS FOR THIS WEEKDAY TO DELETE'
         });
     }
 };
@@ -222,7 +241,7 @@ app
 app
 .route('/api/v1/events/:idOrWeekDay')
 .get(getEvent)
-.delete(deleteEventById);
+.delete(deleteEvent);
 
 //USER SIGN UP
 app

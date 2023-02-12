@@ -6,24 +6,22 @@ Thinking about a new client that appeared in the market, Compass UOL had the ide
 
 #### **PROJECT FEATURES**
 
-- **GET**
-  Get all events registered at a file.
+`GET`
 
-  Get all events related to a weekday from a file.
+- **Get** all events registered at a file.
+- **Get** all events related to a weekday from a file.
+- **Get** a single event by passing its unique id.
 
-  Get a single event by passing its unique id.
+`POST`
 
-- **POST**
-  Create a sign-up user that must follow a valid pre-defined body.
+- **Create** a sign-up user that must follow a valid pre-defined body.
+- **Create** a sign-in user that must follow a valid pre-defined body.
+- **Create** an event using a valid pre-defined body that can automatically register its creation time and generate a new id.
 
-  Create a sign-in user that must follow a valid pre-defined body.
+`DELETE`
 
-  Create an event using a valid pre-defined body that can automatically register its creation time and generate a new id.
-
-- **DELETE**
-  Delete a single event by passing its id.
-
-  Delete all events related to a day of the week by passing the respective weekday.
+- **Delete** a single event by passing its id.
+- **Delete** all events related to a day of the week by passing the respective weekday.
 
 #### **INSTALLATION GUIDE**
 

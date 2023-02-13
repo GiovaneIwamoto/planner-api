@@ -144,7 +144,7 @@ This topic was created with the aim to explain better `filteredEvents` function 
 
 - That code part filters the events array to find the events whose day of the week matches the value of the id or weekday passed in the request parameters. To do this, it creates a new Date object from the event's `dateTime` property and then uses `getUTCDay()` to get the index of the day of the week. Finally, it returns `eventDayOfTheWeek === req.params.idOrWeekDay`, meaning that the filtered events will only include those whose day of the week matches `req.params.idOrWeekday`.
 
-#### **UNSOLVED BUG**
+#### **IMPORTANT CONSIDERATION**
 
 - This topic is a warning for those who wants to implement planner-api to some ongoing project. It is important to alert that some features may not work freely in some cases because of the way it was implemented in this project.
 

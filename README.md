@@ -150,6 +150,16 @@ This topic was created with the aim to explain better `filteredEvents` function 
 
 - If the list of events are empty at `events.json` file, it is not possible to create a new event because the process of creating a fresh one needs a previous event with an id declared to generate it. At `createEvent` the id is calculated based on `events[events.length - 1]._id + 1` so, to resolve that problem, you have to manually insert some event with any start id of your choice.
 
+#### **DEPLOYMENT**
+
+- This topic is to discuss the deployment process of planner-api. The project was deployed using Vercel, a powerful platform for hosting and managing modern web applications. The live application can be accessed at the following link: [Live Planner API](https://planner-api.vercel.app/).
+
+- The deployment process was seamless and straightforward with Vercel. All I had to do was to connect the GitHub repository to Vercel and trigger a new deployment every time changes were made to the code. The deployment process is fully automated, and there is no worry about manual updates or server maintenance.
+
+- In addition to the ease of deployment, Vercel also provides a range of features and tools to help monitor and manage the application. With Vercel's dashboards, it is possible to monitor real-time performance, track errors, and see how users are interacting with the application.
+
+- The deployment link for the project is here: [Project Deploy](https://vercel.com/giovaneiwamoto/planner-api/51ufCnj7hf8ZLungYpaQrSHE1KsD).
+
 #### **AUTHOR**
 
 - Giovane Iwamoto, computer science student at UFMS - Brazil, Campo Grande - MS.

@@ -46,13 +46,13 @@ Thinking about a new client that appeared in the market, Compass UOL had the ide
 | **HTTP VERB** | **ENDPOINT**                   | **ACTION**              |
 | ------------- | ------------------------------ | ----------------------- |
 | GET           | `api/v1/events`                | get all events          |
-| GET           | `ap1/v1/events/{dayOfTheWeek}` | get events by weekday   |
-| GET           | `ap1/v1/events/{id}`           | get event by id         |
-| POST          | `ap1/v1/users/signUp`          | create new signUp user  |
-| POST          | `ap1/v1/users/signIn`          | create new signIn user  |
-| POST          | `ap1/v1/events`                | create event            |
-| DELETE        | `ap1/v1/events/{id}`           | delete event by id      |
-| DELETE        | `ap1/v1/events/{dayOfTheWeek}` | delete event by weekday |
+| GET           | `api/v1/events/{dayOfTheWeek}` | get events by weekday   |
+| GET           | `api/v1/events/{id}`           | get event by id         |
+| POST          | `api/v1/users/signUp`          | create new signUp user  |
+| POST          | `api/v1/users/signIn`          | create new signIn user  |
+| POST          | `api/v1/events`                | create event            |
+| DELETE        | `api/v1/events/{id}`           | delete event by id      |
+| DELETE        | `api/v1/events/{dayOfTheWeek}` | delete event by weekday |
 
 #### **TEST WITH POSTMAN**
 
@@ -81,7 +81,7 @@ Thinking about a new client that appeared in the market, Compass UOL had the ide
   }, ...]
 ```
 
-- Expected response for **GET** events by weekday `ap1/v1/events/{dayOfTheWeek}`:
+- Expected response for **GET** events by weekday `api/v1/events/{dayOfTheWeek}`:
 
 ```
   [{
@@ -92,7 +92,7 @@ Thinking about a new client that appeared in the market, Compass UOL had the ide
   }, ...]
 ```
 
-- Expected response for **GET** events by id `ap1/v1/events/{id}`:
+- Expected response for **GET** events by id `api/v1/events/{id}`:
 
 ```
   [{
@@ -103,7 +103,7 @@ Thinking about a new client that appeared in the market, Compass UOL had the ide
   }]
 ```
 
-- Expected request body for **POST** user sign-up `ap1/v1/users/signUp`:
+- Expected request body for **POST** user sign-up `api/v1/users/signUp`:
 
 ```
   {
@@ -118,7 +118,7 @@ Thinking about a new client that appeared in the market, Compass UOL had the ide
   }
 ```
 
-- Expected request body for **POST** user sign-in `ap1/v1/users/signIn`:
+- Expected request body for **POST** user sign-in `api/v1/users/signIn`:
 
 ```
   {
@@ -127,7 +127,7 @@ Thinking about a new client that appeared in the market, Compass UOL had the ide
   }
 ```
 
-- Expected request body for **POST** event `ap1/v1/events`:
+- Expected request body for **POST** event `api/v1/events`:
 
 ```
   {

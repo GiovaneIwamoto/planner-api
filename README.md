@@ -1,4 +1,4 @@
-# **PLANNER API**
+# PLANNER API
 
 #### **INTRODUCTION**
 

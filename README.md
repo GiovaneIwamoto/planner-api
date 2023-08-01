@@ -1,10 +1,10 @@
 # PLANNER API
 
-#### **INTRODUCTION**
+### **INTRODUCTION**
 
 Thinking about a new client that appeared in the market, Compass UOL had the idea of creating a planner. This planner will help the client to organize his week and his tasks and at what times they happen.
 
-#### **PROJECT FEATURES**
+### **PROJECT FEATURES**
 
 `GET`
 
@@ -23,7 +23,7 @@ Thinking about a new client that appeared in the market, Compass UOL had the ide
 - **Delete** a single event by passing its id.
 - **Delete** all events related to a day of the week by passing the respective weekday.
 
-#### **INSTALLATION GUIDE**
+### **INSTALLATION GUIDE**
 
 - Clone this repository [planner-api](https://github.com/GiovaneIwamoto/planner-api)
 
@@ -37,11 +37,11 @@ Thinking about a new client that appeared in the market, Compass UOL had the ide
 
 - This project was developed using a 4-Major express version, so it's recommended to use the same version.
 
-#### **USAGE**
+### **USAGE**
 
 - run `npm start` at the console, the script should automatically execute `server.js`. In case something goes wrong tries executing it manually by using `nodemon server.js`.
 
-#### **API ENDPOINTS**
+### **API ENDPOINTS**
 
 | **HTTP VERB** | **ENDPOINT**                   | **ACTION**              |
 | ------------- | ------------------------------ | ----------------------- |
@@ -54,7 +54,7 @@ Thinking about a new client that appeared in the market, Compass UOL had the ide
 | DELETE        | `api/v1/events/{id}`           | delete event by id      |
 | DELETE        | `api/v1/events/{dayOfTheWeek}` | delete event by weekday |
 
-#### **TEST WITH POSTMAN**
+### **TEST WITH POSTMAN**
 
 - At `data` folder:
 
@@ -138,19 +138,19 @@ Thinking about a new client that appeared in the market, Compass UOL had the ide
 
 - To learn more about `ISO 8601 UTC` format you can acess the following link: [ISO 8601](https://documentation.sas.com/doc/en/vdmmlcdc/8.1/leforinforref/p1a0qt18rxydrkn1b0rtdfh2t8zs.htm#:~:text=UTC%20is%20a%20datetime%20value,ss%2B%7C%E2%80%93%20hh%3Amm)
 
-#### **FILTERED EVENTS**
+### **FILTERED EVENTS**
 
 This topic was created with the aim to explain better `filteredEvents` function in case there are doubts about how this works.
 
 - That code part filters the events array to find the events whose day of the week matches the value of the id or weekday passed in the request parameters. To do this, it creates a new Date object from the event's `dateTime` property and then uses `getUTCDay()` to get the index of the day of the week. Finally, it returns `eventDayOfTheWeek === req.params.idOrWeekDay`, meaning that the filtered events will only include those whose day of the week matches `req.params.idOrWeekday`.
 
-#### **IMPORTANT CONSIDERATION**
+### **IMPORTANT CONSIDERATION**
 
 - This topic is a warning for those who wants to implement planner-api to some ongoing project. It is important to alert that some features may not work freely in some cases because of the way it was implemented in this project.
 
 - If the list of events are empty at `events.json` file, it is not possible to create a new event because the process of creating a fresh one needs a previous event with an id declared to generate it. At `createEvent` the id is calculated based on `events[events.length - 1]._id + 1` so, to resolve that problem, you have to manually insert some event with any start id of your choice.
 
-#### **DEPLOYMENT**
+### **DEPLOYMENT**
 
 - This topic is to discuss the deployment process of planner-api. The project was deployed using Vercel, a powerful platform for hosting and managing modern web applications. The live application can be accessed at the following link: [Live Planner API](https://planner-api.vercel.app/).
 
@@ -160,7 +160,7 @@ This topic was created with the aim to explain better `filteredEvents` function 
 
 - The deployment link for the project is here: [Project Deploy](https://vercel.com/giovaneiwamoto/planner-api/51ufCnj7hf8ZLungYpaQrSHE1KsD).
 
-#### **AUTHOR**
+### **AUTHOR**
 
 - Giovane Iwamoto, computer science student at UFMS - Brazil, Campo Grande - MS.
 

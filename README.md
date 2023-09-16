@@ -25,8 +25,6 @@ Thinking about a new client that appeared in the market, Compass UOL had the ide
 
 ### **INSTALLATION GUIDE**
 
-- Clone this repository [planner-api](https://github.com/GiovaneIwamoto/planner-api)
-
 - Ensure that you are working from the main branch, it is the most stable at any given time for this project.
 
 - Run `npm install` to install all the dependencies needs.

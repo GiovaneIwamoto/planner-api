@@ -2,7 +2,9 @@
 
 ### **INTRODUCTION**
 
-Thinking about a new client that appeared in the market, Compass UOL had the idea of creating a planner. This planner will help the client to organize his week and his tasks and at what times they happen.
+Considering the requirements of a new client entering the market, the concept of developing a sophisticated planner application emerged. This planner will be designed to assist the client in systematically organizing weekly schedules, managing tasks, and specifying time allocations for various activities.
+
+[![Icons](https://skillicons.dev/icons?i=js,nodejs,git,postman&theme=dark)](https://skillicons.dev)
 
 ---
 
@@ -19,7 +21,7 @@ POST
 
 - Create a signup user that must follow a valid pre-defined body.
 - Create a signin user that must follow a valid pre-defined body.
-- Create an event using a valid predefined body that can automatically register its creation time and generate a new id.
+- Create an event using a valid predefined body.
 
 DELETE
 
@@ -32,20 +34,16 @@ DELETE
 ### **INSTALLATION GUIDE**
 
 > [!IMPORTANT]
-> Ensure that you are working from the main branch, it is the most stable at any given time for this project.
+> Ensure that you are working from the main branch, it is the most stable at any given time for this project. If something goes wrong with the installation it is possible to install manually following the next commands at the console:
 
-- Run `$ npm install` to install all the dependencies needs.
-
-- If something goes wrong with the installation it is possible to install manually following the next commands at the console:
-
-```ruby
+```shell
 $ npm install express
 $ npm install nodemon --save-dev
 $ npm install morgan
 ```
 
 > [!WARNING]
-> This project was developed using a 4-Major express version, so it's recommended to use the same version.
+> This project was developed using a 4.x major version of Express, so it is highly recommended to use the same version to ensure compatibility and functionality.
 
 ---
 

@@ -40,8 +40,8 @@ DELETE
 
 - If something goes wrong with the installation it is possible to install manually following the next commands at the console:
 
-```powershell
-$ npm install express@4
+```ruby
+$ npm install express
 $ npm install nodemon --save-dev
 $ npm install morgan
 ```

@@ -36,8 +36,6 @@ DELETE
 
 - Run `$ npm install` to install all the dependencies needs.
 
-- Make sure that you have all that dependencies in your `package.json` file: _express_, _morgan_ and _nodemon_.
-
 - If something goes wrong with the installation it is possible to install manually following the next commands at the console:
 
 ```ruby

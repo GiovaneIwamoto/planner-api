@@ -45,11 +45,9 @@ $ npm install morgan
 > [!WARNING]
 > This project was developed using a 4.x major version of Express, so it is highly recommended to use the same version to ensure compatibility and functionality.
 
+Run _$ npm start_ at the console so the script should automatically execute _$ server.js_.
+
 ---
-
-### **USAGE**
-
-Run `$ npm start` at the console, the script should automatically execute `$ server.js`.
 
 ### **API ENDPOINTS**
 

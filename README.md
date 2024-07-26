@@ -4,28 +4,35 @@
 
 Thinking about a new client that appeared in the market, Compass UOL had the idea of creating a planner. This planner will help the client to organize his week and his tasks and at what times they happen.
 
+---
+
 ### **PROJECT FEATURES**
 
-`GET`
+```ruby
+GET
 
 - **Get** all events registered at a file.
 - **Get** all events related to a weekday from a file.
 - **Get** a single event by passing its unique id.
 
-`POST`
+POST
 
-- **Create** a sign-up user that must follow a valid pre-defined body.
-- **Create** a sign-in user that must follow a valid pre-defined body.
-- **Create** an event using a valid pre-defined body that can automatically register its creation time and generate a new id.
+- **Create** a signup user that must follow a valid pre-defined body.
+- **Create** a signin user that must follow a valid pre-defined body.
+- **Create** an event using a valid predefined body that can automatically register its creation time and generate a new id.
 
-`DELETE`
+DELETE
 
 - **Delete** a single event by passing its id.
 - **Delete** all events related to a day of the week by passing the respective weekday.
+```
+
+---
 
 ### **INSTALLATION GUIDE**
 
-- Ensure that you are working from the main branch, it is the most stable at any given time for this project.
+> [!IMPORTANT]
+> Ensure that you are working from the main branch, it is the most stable at any given time for this project.
 
 - Run `npm install` to install all the dependencies needs.
 
@@ -33,24 +40,31 @@ Thinking about a new client that appeared in the market, Compass UOL had the ide
 
 - If something goes wrong with the installation it is possible to install manually following the next commands at the console : `npm install express@4`, `npm install nodemon --save-dev`, `npm install morgan`.
 
-- This project was developed using a 4-Major express version, so it's recommended to use the same version.
+> [!WARNING]
+> This project was developed using a 4-Major express version, so it's recommended to use the same version.
+
+---
 
 ### **USAGE**
 
 - run `npm start` at the console, the script should automatically execute `server.js`. In case something goes wrong tries executing it manually by using `nodemon server.js`.
 
+---
+
 ### **API ENDPOINTS**
 
-| **HTTP VERB** | **ENDPOINT**                   | **ACTION**              |
-| ------------- | ------------------------------ | ----------------------- |
-| GET           | `api/v1/events`                | get all events          |
-| GET           | `api/v1/events/{dayOfTheWeek}` | get events by weekday   |
-| GET           | `api/v1/events/{id}`           | get event by id         |
-| POST          | `api/v1/users/signUp`          | create new signUp user  |
-| POST          | `api/v1/users/signIn`          | create new signIn user  |
-| POST          | `api/v1/events`                | create event            |
-| DELETE        | `api/v1/events/{id}`           | delete event by id      |
-| DELETE        | `api/v1/events/{dayOfTheWeek}` | delete event by weekday |
+| **HTTP VERB** | **ENDPOINT**                 | **ACTION**              |
+| ------------- | ---------------------------- | ----------------------- |
+| GET           | api/v1/events                | get all events          |
+| GET           | api/v1/events/{dayOfTheWeek} | get events by weekday   |
+| GET           | api/v1/events/{id}           | get event by id         |
+| POST          | api/v1/users/signUp          | create new signUp user  |
+| POST          | api/v1/users/signIn          | create new signIn user  |
+| POST          | api/v1/events                | create event            |
+| DELETE        | api/v1/events/{id}           | delete event by id      |
+| DELETE        | api/v1/events/{dayOfTheWeek} | delete event by weekday |
+
+---
 
 ### **TEST WITH POSTMAN**
 
@@ -64,13 +78,15 @@ Thinking about a new client that appeared in the market, Compass UOL had the ide
 
 - The `events.json` file is already filled with some simples events just for testing.
 
-- For getting or deleting an event using `{dayOfTheWeek}` as endpoint, weekday must be passed using only lowercase letters and written at `EN-US`.
+> [!NOTE]
+> For getting or deleting an event using {dayOfTheWeek} as endpoint, weekday must be passed using only lowercase letters and written at EN-US.
 
-- Tip: For better visual experience for .json files, at Visual studio code, you can use the auto-format shortcut key: Windows `Shift + Alt + F`, Mac `Shift + Option + F`, Linux `Ctrl + Shift + l`.
+> [!TIP]
+> For better visual experience for .json files, at Visual studio code, you can use the auto-format shortcut key: Windows Shift + Alt + F, Mac Shift + Option + F, Linux Ctrl + Shift + l.
 
 - Expected response for **GET** all events `api/v1/events`:
 
-```
+```json
   [{
   "_id" : "string",
   "description" : "string",
@@ -81,7 +97,7 @@ Thinking about a new client that appeared in the market, Compass UOL had the ide
 
 - Expected response for **GET** events by weekday `api/v1/events/{dayOfTheWeek}`:
 
-```
+```json
   [{
   "_id" : "string",
   "description" : "string",
@@ -92,49 +108,54 @@ Thinking about a new client that appeared in the market, Compass UOL had the ide
 
 - Expected response for **GET** events by id `api/v1/events/{id}`:
 
-```
-  [{
-  "_id" : "string",
-  "description" : "string",
-  "dateTime" : "ISO 8601 UTC format",
-  "createdAt" : "ISO 8601 UTC format"
-  }]
+```json
+[
+  {
+    "_id": "string",
+    "description": "string",
+    "dateTime": "ISO 8601 UTC format",
+    "createdAt": "ISO 8601 UTC format"
+  }
+]
 ```
 
 - Expected request body for **POST** user sign-up `api/v1/users/signUp`:
 
-```
-  {
-  "firstName" : "string",
-  "lastName" : "string",
-  "birthDate" : "string",
-  "city" : "string",
-  "country" : "string",
-  "email" : "string",
-  "password" : "string",
-  "confirmPassword" : "string"
-  }
+```json
+{
+  "firstName": "string",
+  "lastName": "string",
+  "birthDate": "string",
+  "city": "string",
+  "country": "string",
+  "email": "string",
+  "password": "string",
+  "confirmPassword": "string"
+}
 ```
 
 - Expected request body for **POST** user sign-in `api/v1/users/signIn`:
 
-```
-  {
-  "email" : "string",
-  "password" : "string"
-  }
+```json
+{
+  "email": "string",
+  "password": "string"
+}
 ```
 
 - Expected request body for **POST** event `api/v1/events`:
 
-```
-  {
+```json
+{
   "description": "string",
   "dateTime": "ISO 8601 UTC format"
-  }
+}
 ```
 
-- To learn more about `ISO 8601 UTC` format you can acess the following link: [ISO 8601](https://documentation.sas.com/doc/en/vdmmlcdc/8.1/leforinforref/p1a0qt18rxydrkn1b0rtdfh2t8zs.htm#:~:text=UTC%20is%20a%20datetime%20value,ss%2B%7C%E2%80%93%20hh%3Amm)
+> [!TIP]
+> To learn more about `ISO 8601 UTC` format you can acess the following link: [ISO 8601](https://documentation.sas.com/doc/en/vdmmlcdc/8.1/leforinforref/p1a0qt18rxydrkn1b0rtdfh2t8zs.htm#:~:text=UTC%20is%20a%20datetime%20value,ss%2B%7C%E2%80%93%20hh%3Amm)
+
+---
 
 ### **FILTERED EVENTS**
 
@@ -142,11 +163,15 @@ This topic was created with the aim to explain better `filteredEvents` function 
 
 - That code part filters the events array to find the events whose day of the week matches the value of the id or weekday passed in the request parameters. To do this, it creates a new Date object from the event's `dateTime` property and then uses `getUTCDay()` to get the index of the day of the week. Finally, it returns `eventDayOfTheWeek === req.params.idOrWeekDay`, meaning that the filtered events will only include those whose day of the week matches `req.params.idOrWeekday`.
 
+---
+
 ### **IMPORTANT CONSIDERATION**
 
 - This topic is a warning for those who wants to implement planner-api to some ongoing project. It is important to alert that some features may not work freely in some cases because of the way it was implemented in this project.
 
 - If the list of events are empty at `events.json` file, it is not possible to create a new event because the process of creating a fresh one needs a previous event with an id declared to generate it. At `createEvent` the id is calculated based on `events[events.length - 1]._id + 1` so, to resolve that problem, you have to manually insert some event with any start id of your choice.
+
+---
 
 ### **DEPLOYMENT**
 
@@ -157,6 +182,8 @@ This topic was created with the aim to explain better `filteredEvents` function 
 - In addition to the ease of deployment, Vercel also provides a range of features and tools to help monitor and manage the application. With Vercel's dashboards, it is possible to monitor real-time performance, track errors, and see how users are interacting with the application.
 
 - The deployment link for the project is here: [Project Deploy](https://vercel.com/giovaneiwamoto/planner-api/51ufCnj7hf8ZLungYpaQrSHE1KsD).
+
+---
 
 ### **AUTHOR**
 

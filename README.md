@@ -11,20 +11,20 @@ Thinking about a new client that appeared in the market, Compass UOL had the ide
 ```ruby
 GET
 
-- **Get** all events registered at a file.
-- **Get** all events related to a weekday from a file.
-- **Get** a single event by passing its unique id.
+- Get all events registered at a file.
+- Get all events related to a weekday from a file.
+- Get a single event by passing its unique id.
 
 POST
 
-- **Create** a signup user that must follow a valid pre-defined body.
-- **Create** a signin user that must follow a valid pre-defined body.
-- **Create** an event using a valid predefined body that can automatically register its creation time and generate a new id.
+- Create a signup user that must follow a valid pre-defined body.
+- Create a signin user that must follow a valid pre-defined body.
+- Create an event using a valid predefined body that can automatically register its creation time and generate a new id.
 
 DELETE
 
-- **Delete** a single event by passing its id.
-- **Delete** all events related to a day of the week by passing the respective weekday.
+- Delete a single event by passing its id.
+- Delete all events related to a day of the week by passing the respective weekday.
 ```
 
 ---
@@ -34,11 +34,17 @@ DELETE
 > [!IMPORTANT]
 > Ensure that you are working from the main branch, it is the most stable at any given time for this project.
 
-- Run `npm install` to install all the dependencies needs.
+- Run `$ npm install` to install all the dependencies needs.
 
 - Make sure that you have all that dependencies in your `package.json` file: _express_, _morgan_ and _nodemon_.
 
-- If something goes wrong with the installation it is possible to install manually following the next commands at the console : `npm install express@4`, `npm install nodemon --save-dev`, `npm install morgan`.
+- If something goes wrong with the installation it is possible to install manually following the next commands at the console:
+
+```ruby
+$ npm install express@4
+$ npm install nodemon --save-dev
+$ npm install morgan
+```
 
 > [!WARNING]
 > This project was developed using a 4-Major express version, so it's recommended to use the same version.
@@ -47,9 +53,7 @@ DELETE
 
 ### **USAGE**
 
-- run `npm start` at the console, the script should automatically execute `server.js`. In case something goes wrong tries executing it manually by using `nodemon server.js`.
-
----
+Run `$ npm start` at the console, the script should automatically execute `$ server.js`.
 
 ### **API ENDPOINTS**
 
@@ -68,21 +72,19 @@ DELETE
 
 ### **TEST WITH POSTMAN**
 
-- At `data` folder:
-
-  All events updates can be seen at `events.json` file.
-
-  All users sign-up posts can be found at `users-sign-up.json` file.
-
-  All users sign-in posts can be found at `users-sign-in.json` file.
-
-- The `events.json` file is already filled with some simples events just for testing.
-
 > [!NOTE]
 > For getting or deleting an event using {dayOfTheWeek} as endpoint, weekday must be passed using only lowercase letters and written at EN-US.
 
+```ruby
+- At data folder:
+
+  All events updates can be seen at `events.json` file.
+  All users signup posts can be found at `users-sign-up.json` file.
+  All users signin posts can be found at `users-sign-in.json` file.
+```
+
 > [!TIP]
-> For better visual experience for .json files, at Visual studio code, you can use the auto-format shortcut key: Windows Shift + Alt + F, Mac Shift + Option + F, Linux Ctrl + Shift + l.
+> For better visual experience for .json files, at Visual studio code, you can use the auto-format shortcut key: _Windows Shift + Alt + F_ | _Mac Shift + Option + F_ | _Linux Ctrl + Shift + l_.
 
 - Expected response for **GET** all events `api/v1/events`:
 
@@ -159,17 +161,18 @@ DELETE
 
 ### **FILTERED EVENTS**
 
-This topic was created with the aim to explain better `filteredEvents` function in case there are doubts about how this works.
+This topic was created with the aim to explain better _filteredEvents_ function in case there are doubts about how this works.
 
-- That code part filters the events array to find the events whose day of the week matches the value of the id or weekday passed in the request parameters. To do this, it creates a new Date object from the event's `dateTime` property and then uses `getUTCDay()` to get the index of the day of the week. Finally, it returns `eventDayOfTheWeek === req.params.idOrWeekDay`, meaning that the filtered events will only include those whose day of the week matches `req.params.idOrWeekday`.
+- That code part filters the events array to find the events whose day of the week matches the value of the id or weekday passed in the request parameters. To do this, it creates a new Date object from the event's _dateTime_ property and then uses _getUTCDay()_ to get the index of the day of the week. Finally, it returns `eventDayOfTheWeek === req.params.idOrWeekDay`, meaning that the filtered events will only include those whose day of the week matches _req.params.idOrWeekday_.
 
 ---
 
 ### **IMPORTANT CONSIDERATION**
 
-- This topic is a warning for those who wants to implement planner-api to some ongoing project. It is important to alert that some features may not work freely in some cases because of the way it was implemented in this project.
+> [!CAUTION]
+> This topic is a warning for those who wants to implement planner-api to some ongoing project. It is important to alert that some features may not work freely in some cases because of the way it was implemented in this project.
 
-- If the list of events are empty at `events.json` file, it is not possible to create a new event because the process of creating a fresh one needs a previous event with an id declared to generate it. At `createEvent` the id is calculated based on `events[events.length - 1]._id + 1` so, to resolve that problem, you have to manually insert some event with any start id of your choice.
+- If the list of events are empty at _events.json_ file, it is not possible to create a new event because the process of creating a fresh one needs a previous event with an id declared to generate it. At _createEvent_ the id is calculated based on `events[events.length - 1]._id + 1` so, to resolve that problem, you have to manually insert some event with any start id of your choice.
 
 ---
 
@@ -180,8 +183,6 @@ This topic was created with the aim to explain better `filteredEvents` function 
 - The deployment process was seamless and straightforward with Vercel. All I had to do was to connect the GitHub repository to Vercel and trigger a new deployment every time changes were made to the code. The deployment process is fully automated, and there is no worry about manual updates or server maintenance.
 
 - In addition to the ease of deployment, Vercel also provides a range of features and tools to help monitor and manage the application. With Vercel's dashboards, it is possible to monitor real-time performance, track errors, and see how users are interacting with the application.
-
-- The deployment link for the project is here: [Project Deploy](https://vercel.com/giovaneiwamoto/planner-api/51ufCnj7hf8ZLungYpaQrSHE1KsD).
 
 ---
 

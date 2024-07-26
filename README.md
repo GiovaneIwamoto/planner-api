@@ -40,7 +40,7 @@ DELETE
 
 - If something goes wrong with the installation it is possible to install manually following the next commands at the console:
 
-```ruby
+```powershell
 $ npm install express@4
 $ npm install nodemon --save-dev
 $ npm install morgan
@@ -161,9 +161,7 @@ Run `$ npm start` at the console, the script should automatically execute `$ ser
 
 ### **FILTERED EVENTS**
 
-This topic was created with the aim to explain better _filteredEvents_ function in case there are doubts about how this works.
-
-- That code part filters the events array to find the events whose day of the week matches the value of the id or weekday passed in the request parameters. To do this, it creates a new Date object from the event's _dateTime_ property and then uses _getUTCDay()_ to get the index of the day of the week. Finally, it returns `eventDayOfTheWeek === req.params.idOrWeekDay`, meaning that the filtered events will only include those whose day of the week matches _req.params.idOrWeekday_.
+This topic was created with the aim to explain better _filteredEvents_ function in case there are doubts about how this works. That code part filters the events array to find the events whose day of the week matches the value of the id or weekday passed in the request parameters. To do this, it creates a new Date object from the event's _dateTime_ property and then uses _getUTCDay()_ to get the index of the day of the week. Finally, it returns `eventDayOfTheWeek`, meaning that the filtered events will only include those whose day of the week matches _req.params.idOrWeekday_.
 
 ---
 
